@@ -7,4 +7,7 @@ Converted & Reworked by: Danglr
 
 RSG-Framework provided by RexShackGaming: https://github.com/Rexshack-RedM
 
+-EASYILY change settings to your liking in the config.
+-Currently set to 10 drops before you go back and get paid.
+
 Dependency: rsg-core https://github.com/Rexshack-RedM/rsg-core
