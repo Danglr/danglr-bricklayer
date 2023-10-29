@@ -386,6 +386,18 @@ CreateThread(function()
         while not DoesEntityExist(npc) do
             Wait(300)
         end
+        exports['rsg-target']:AddTargetModel(Config.JobNpc[z]["Model"], {
+            options = {
+                {
+                    type = "client",
+                    event = "danglr-bricklayer:OpenJobMenu",
+                    icon = "fas fa-person-digging",
+                    style = "",
+                    label = "Brick Job",
+                },
+            },
+            distance = 2.5
+        })
         Citizen.InvokeNative(0x283978A15512B2FE, npc, true)
         FreezeEntityPosition(npc, false)
         SetEntityInvincible(npc, true)
