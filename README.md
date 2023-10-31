@@ -11,3 +11,4 @@ RSG-Framework provided by RexShackGaming: https://github.com/Rexshack-RedM
 -Currently set to 10 drops before you go back and get paid.
 
 Dependency: rsg-core https://github.com/Rexshack-RedM/rsg-core
+            ox_lib https://github.com/overextended/ox_lib
