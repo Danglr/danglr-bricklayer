@@ -215,89 +215,47 @@ end)
 
 RegisterNetEvent('danglr-bricklayer:DropBrick', function()
     local coords = GetEntityCoords(PlayerPedId())
-    if hasJob then
-        if DropCount <= Config.DropCount then
-
-            local success = exports['rsg-lock']:StartLockPickCircle( 3, 10 )
-            if success then
-                -- REMOVES THE BRICK PROP --
-                for k, v in pairs(GetGamePool('CObject')) do
-                    if IsEntityAttachedToEntity(PlayerPedId(), v) then
-                        SetEntityAsMissionEntity(v, true, true)
-                        DeleteObject(v)
-                        DeleteEntity(v)
-                    end
-                end
-                ClearPedTasks(PlayerPedId())
-                Wait(100)
-                PickedUp = false
-
-                -- START ANIMATION --
-                TaskStartScenarioInPlace(PlayerPedId(), GetHashKey('world_player_dynamic_kneel'), -1, true, false, false, false)
-                RSGCore.Functions.Progressbar("placebrick", "Placing Brick...", (Config.PlaceTime * 1000), false, true, {
-                    disableMovement = true,
-                    disableCarMovement = false,
-                    disableMouse = false,
-                    disableCombat = true,
-                }, {}, {}, {}, function() -- Done
-
-                    DropCount = DropCount + 1
-
-                    if Config.Prints then
-                        print("Drop Count: "..DropCount)
-                    end
-
-                    RemoveBlip(dropBlip)
-
-                    Wait(100)
-
-                    if DropCount < Config.DropCount then
-                        PickupBrickLocation()
-                    else
-                        RSGCore.Functions.Notify('Work Completed! Go Get Your Check', 'error') 
-                    end
-                end) 
-
-            else
-                SetPedToRagdoll(PlayerPedId(), 1000, 1000, 0, 0, 0, 0)
-                RSGCore.Functions.Notify('Never laid a brick before?! Try again!', 'error')
-                TaskStartScenarioInPlace(PlayerPedId(), GetHashKey('world_player_dynamic_kneel'), -1, true, false, false, false)
-                RSGCore.Functions.Progressbar("placebrick", "Placing Brick...", (Config.PlaceTime * 1000), false, true, {
-                    disableMovement = true,
-                    disableCarMovement = false,
-                    disableMouse = false,
-                    disableCombat = true,
-                }, {}, {}, {}, function() -- Done
-
-                    DropCount = DropCount + 1
-
-                    if Config.Prints then
-                        print("Drop Count: "..DropCount)
-                    end
-
-                    RemoveBlip(dropBlip)
-
-                    Wait(100)
-
-                    for k, v in pairs(GetGamePool('CObject')) do
-                        if IsEntityAttachedToEntity(PlayerPedId(), v) then
-                            SetEntityAsMissionEntity(v, true, true)
-                            DeleteObject(v)
-                            DeleteEntity(v)
-                        end
-                    end
-
-                    if DropCount < Config.DropCount then
-                        success =
-                        PickupBrickLocation()
-                    else
-                        RSGCore.Functions.Notify('Work Completed! Go Get Your Check', 'error') 
-                    end
-                end) 
+    
+    if hasJob and DropCount <= Config.DropCount then
+        -- REMOVES THE BRICK PROP --
+        for k, v in pairs(GetGamePool('CObject')) do
+            if IsEntityAttachedToEntity(PlayerPedId(), v) then
+                SetEntityAsMissionEntity(v, true, true)
+                DeleteObject(v)
+                DeleteEntity(v)
             end
-        else
-            RSGCore.Functions.Notify('Work done! Collect Your Check!', 'error') 
         end
+        ClearPedTasks(PlayerPedId())
+        Wait(100)
+        PickedUp = false
+
+        -- START ANIMATION --
+        TaskStartScenarioInPlace(PlayerPedId(), GetHashKey('world_player_dynamic_kneel'), -1, true, false, false, false)
+        RSGCore.Functions.Progressbar("placebrick", "Placing Brick...", (Config.PlaceTime * 1000), false, true, {
+            disableMovement = true,
+            disableCarMovement = false,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function() -- Done
+
+            DropCount = DropCount + 1
+
+            if Config.Prints then
+                print("Drop Count: "..DropCount)
+            end
+
+            RemoveBlip(dropBlip)
+
+            Wait(100)
+
+            if DropCount < Config.DropCount then
+                PickupBrickLocation()
+            else
+                RSGCore.Functions.Notify('Work Completed! Go Get Your Check', 'error') 
+            end
+        end) 
+    else
+        RSGCore.Functions.Notify('Work done! Collect Your Check!', 'error') 
     end
 end)
 
