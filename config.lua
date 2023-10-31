@@ -10,13 +10,9 @@ Config.Keys = {
 
 -- PAYMENTS / DROP COUNTER --
 Config.Moneytype = 'cash' -- Set to cash or bank
-Config.PayPerDrop = 1.50 -- Pay is 1.50 cents per drop
-Config.DropCount = 10 -- Max drops before they must collect paycheck
+Config.PayPerDrop = 0.60 -- Pay is 1.50 cents per drop
+Config.DropCount = math.random(5, 15) -- Max drops before they must collect paycheck
 Config.PlaceTime = 4 -- How long the progressbar to place wood is - In Seconds
-
--- MINIGAME CONFIG --
-Config.Circle = 3 -- Circles required to complete
-Config.Time = 12 -- How long each circle is
 
 -- NPC LOCATIONS --
 Config.JobNpc = {
