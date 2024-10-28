@@ -1,4 +1,6 @@
 # danglr-bricklayer-main
+### DOESNT WORK WITH RSG-CORE V2 CURRENTLY ###
+
 Made/Converted for the RSG Framework. Brick laying job with minigame!
 Originally was a construction job, converted and reworked by me to make into a brick layer job.
 
